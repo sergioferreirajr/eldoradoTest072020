@@ -1,0 +1,21 @@
+Atividades executadas
+15/07/2020
+- Configuração do ambiente de desenvolvimento (VSCode, Git, Angular, Node, Xampp)
+- Criação do projeto no GitHub
+- Criação do banco de dados no MySQL
+- Criação da estrutura principal do projeto (módulos e componentes)
+
+Atividades pendentes:
+- Criar tela NewDevice
+- Criar tela DeviceList
+- Criar tela DeleteDevice
+- Criar tela NewCategory
+- Criar tela CategoryList
+- Criar tela DeleteCategory
+- Criar tela Home
+- Criar projeto da API Node
+- Criar endpoints e integrar com o BD
+- Integrar endpoints no projeto Angular
+- Implementar testes automatizados
+- Criar nova conta na Amazon e instanciar máquinas T2 para front, back e BD
+- Configurar máquinas AWS e instalar sistema
