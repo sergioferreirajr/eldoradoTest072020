@@ -1,1 +1,36 @@
-<p>newcategory works!</p>
+<h3>New Category</h3>
+
+<div class="well">
+  <form #formCategory="ngForm">
+    <div class="form-group">
+      <!-- NAME -->
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name"
+        [(ngModel)]="category.name" #name="ngModel"
+        maxlength="128" required>
+      <div *ngIf="name.errors && (name.dirty || name.touched)"
+            class="alert alert-danger">
+        <div [hidden]="!name.errors.required">
+          Type the Category Name
+        </div>
+        <div [hidden]="!name.errors.maxlength">
+          The Category Name could not have more than 128 chars
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group text-center">
+      <input
+        type="submit"
+        class="btn btn-success"
+        (click)="newCategory()"
+        value="Confirm"
+        [disabled]="!formCategory.form.valid">
+      <a [routerLink]="['/categories']"
+        class="btn btn-default">
+        <span class="glyphicon glyphicon-chevron-left"
+          aria-hidden="true"></span> Voltar
+      </a>
+    </div>
+  </form>
+</div>
