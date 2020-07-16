@@ -5,14 +5,16 @@ Atividades executadas
 - Criação do banco de dados no MySQL
 - Criação da estrutura principal do projeto (módulos e componentes)
 
-Atividades pendentes:
+16/07/2020
 - Criar tela NewDevice
 - Criar tela DeviceList
-- Criar tela DeleteDevice
+- Criar funcionalidade DeleteDevice
 - Criar tela NewCategory
 - Criar tela CategoryList
-- Criar tela DeleteCategory
+- Criar funcionalidade DeleteCategory
 - Criar tela Home
+
+Atividades pendentes:
 - Criar projeto da API Node
 - Criar endpoints e integrar com o BD
 - Integrar endpoints no projeto Angular
