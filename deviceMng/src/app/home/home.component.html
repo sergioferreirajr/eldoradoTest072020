@@ -1,1 +1,48 @@
-{{title}}
+<h4>Eldorado Challenge</h4>
+<p>You must implement a simple device management web app. Devices have (Id, category, color,
+partNumber). The device category must also be managed by your APP. Types have (id, name).</p>
+<dl>
+  <dt>
+    <p>- Login and authentication is not necessary.</p>
+    <p>- Web app must have a menu with two options: Category Management, Device Management.</p>
+    <p>- You must implement Create, Read and Delete. (Update is not necessary due to time constraints for this implementation)</p>
+    <p>- Device:</p>
+  </dt>
+  <dd>
+    <p>- Id: (generated automatically. Integer and incremental)</p>
+    <p>- Category: A dropdown selection you can choose from all categories available.</p>
+    <p>- Color: Text field, with validation (letters only, max size 16)</p>
+    <p>- partNumber: positive integer field, with validation.</p>
+  </dd>
+  <dt>
+    <p>- Category:</p>
+  </dt>
+  <dd>
+    <p>- Id: (generated automatically, integer and incremental)</p>
+    <p>- Name: Must not be empty. All categories must have a name. Max size 128 chars.</p>
+  </dd>
+  <dt>
+    <p>- All fields are mandatory.</p>
+    <p>- You are free to use any layout but the APP must list all devices and categories, and also have screens/components that enable the user to create new categories and devices, or delete them.</p>
+  </dt>
+</dl>
+<p></p>
+<ul>
+  <li>Front End must be implemented with Angular 8 or above.</li>
+  <li>Backend must be implemented in NodeJS (version 10 or above).</li>
+  <li>[Automated tests on the backend is not mandatory but is a PLUS.]</li>
+  <li>Devices and Categories MUST be persisted on a MySQL database.</li>
+  <li>You must provide the script (SQL or any database versioning/migration script) that can create the database from scratch.</li>
+  <li>Use GIT, commit every progress you made, and share your cond on a github public repository.</li>
+</ul>
+<p>
+  <p>Super challenge:</p>
+  <dl>
+    <p>- Deploy your project on a cloud provider (AWS, GCP, Heroku or any other), and send the URL of your web application, and the URL of your GIT repo.</p>
+    <p>- AWS is preferred. Our recommendation is to sign up for a free account and use:</p>
+    <p>- One T2 micro EC2 instance (for backend)</p>
+    <p>- One RDS T2 micro instance (for database)</p>
+    <p>- Frontend can be deployed on S3 static bucket or on the same EC2 instance used for the backend (to avoid additional costs).</p>
+    <p>- In case the project could not be deployed, it must be ready to run and install on a Ubuntu 18 linux machine. The evaluation process would be:</p>
+    <p> Clone the repo. (create the local database based on the script given). Run front end and back end locally.</p>
+  </dl>
