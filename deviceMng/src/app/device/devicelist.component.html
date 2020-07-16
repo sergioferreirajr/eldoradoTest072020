@@ -1,1 +1,43 @@
-<p>device LIST works!</p>
+<h4>Devices</h4>
+
+<table class="table table-striped table-bordered table-hover">
+  <tbody>
+    <tr>
+    	<th>Device ID</th>
+      <th>Category</th>
+      <th>Color</th>
+      <th>Part Number</th>
+    	<th class="text-center">
+        <a [routerLink]="['/devices/newdevice']"
+           class="btn btn-xs btn-success">
+           <span class="glyphicon glyphicon-plus"
+             aria-hidden="true"></span> New
+        </a>
+    </th>
+    </tr>
+    <tr *ngFor= "let device of devices">
+      <td>
+        {{device.id}}
+      </td>
+      <td>
+        {{getCategoryNameById(device.categoryId)}}
+      </td>
+      <td>
+        {{device.color}}
+      </td>
+      <td>
+        {{device.partNumber}}
+      </td>
+      <td class="text-center" style="width: 200px">
+        <a href="#" title="Delete" alt="Delete"
+          class="btn btn-xs btn-danger"
+          (click)="deleteDevice($event, device)">
+          <span class="glyphicon glyphicon-remove"
+            aria-hidden="true"></span> Delete
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="devices.length==0">No devices.</p>
