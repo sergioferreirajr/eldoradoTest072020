@@ -4,9 +4,7 @@ import { DeviceListComponent } from './device/devicelist.component';
 import { CategoryListComponent } from './category/categorylist.component';
 import { HomeComponent } from './home/home.component';
 import { NewdeviceComponent } from './device/newdevice.component';
-import { DeletedeviceComponent } from './device/deletedevice.component';
 import { NewcategoryComponent } from './category/newcategory.component';
-import { DeletecategoryComponent } from './category/deletecategory.component';
 
 export const routes: Routes = [
   {
@@ -19,28 +17,20 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
-    path:'devicelist',
+    path:'devices',
     component: DeviceListComponent
   },
   {
-    path:'deletedevice',
-    component: DeletedeviceComponent
-  },
-  {
-    path:'newdevice',
+    path:'devices/newdevice',
     component: NewdeviceComponent
   },
   {
-    path:'categorylist',
+    path:'categories',
     component: CategoryListComponent
   },
   {
-    path:'newcategory',
+    path:'categories/newcategory',
     component: NewcategoryComponent
-  },
-  {
-    path:'deletecategory',
-    component: DeletecategoryComponent
   }
 ];
 
