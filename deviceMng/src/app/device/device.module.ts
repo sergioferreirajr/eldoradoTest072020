@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceListComponent } from './devicelist.component';
 import { NewdeviceComponent } from './newdevice.component';
-import { DeletedeviceComponent } from './deletedevice.component';
-
-
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [DeviceListComponent, NewdeviceComponent, DeletedeviceComponent],
+  declarations: [DeviceListComponent, NewdeviceComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    FormsModule
   ],
   exports: [
-    DeviceListComponent, NewdeviceComponent, DeletedeviceComponent
+    DeviceListComponent, NewdeviceComponent
   ]
 })
 export class DeviceModule { }
