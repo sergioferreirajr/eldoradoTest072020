@@ -14,8 +14,11 @@ Atividades executadas
 - Criar funcionalidade DeleteCategory
 - Criar tela Home
 
-Atividades pendentes:
+17/07/2020
 - Criar projeto da API Node
+- Criar endpoints e integrar com o BD (parcial: endpoints de Device com validação)
+
+Atividades pendentes:
 - Criar endpoints e integrar com o BD
 - Integrar endpoints no projeto Angular
 - Implementar testes automatizados
