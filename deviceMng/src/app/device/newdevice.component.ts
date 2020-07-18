@@ -14,21 +14,26 @@ export class NewdeviceComponent implements OnInit {
 
   @ViewChild('formDevice', {static: true}) formDevice: NgForm;
   device: Device;
+  categories: Category[];
 
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     this.device = new Device();
+    this.getCategories();
   }
 
   newDevice(): void {
     if(this.formDevice.form.valid){
-      this.dataService.newDevice(this.device);
-      this.router.navigate(["/devices"]);
+      this.dataService.newDevice(this.device).subscribe(() => {
+        this.router.navigate(["/devices"]);
+      });
     }
   }
 
-  getCategories(): Category[]{
-    return this.dataService.getCategories();
+  getCategories(): void{
+    this.dataService.getCategories().subscribe((cats: Category[]) => {
+      this.categories = cats;
+    });
   }
 }

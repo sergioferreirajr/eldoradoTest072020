@@ -9,23 +9,26 @@ import { Category } from './category.model';
 })
 export class CategoryListComponent implements OnInit {
 
-  categories: Category[];
+  categories: Category[] = [];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.categories = this.getCategories();
+    this.getCategories();
   }
 
-  getCategories(): Category[]{
-    return this.dataService.getCategories();
+  private getCategories(){
+    this.dataService.getCategories().subscribe((cats: Category[])=>{
+      this.categories = cats;
+    });
   }
 
   deleteCategory($event: any, category: Category): void {
     $event.preventDefault();
     if (confirm('ATTENTION. This action can deletes all Devices related to this Category. Do you confirm the deletion: Category = "' + category.id + '"?')) {
-      this.dataService.deleteCategory(category.id);
-      this.categories = this.dataService.getCategories();
+      this.dataService.deleteCategory(category.id).subscribe(()=>{
+        this.getCategories();
+      });
     }
   }
 }
