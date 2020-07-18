@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 15/07/2020 às 08:46
--- Versão do servidor: 10.1.40-MariaDB
--- Versão do PHP: 7.1.29
+-- Tempo de geração: 18/07/2020 às 08:45
+-- Versão do servidor: 10.4.13-MariaDB
+-- Versão do PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,12 +30,11 @@ USE `eldoradodb`;
 --
 
 DROP TABLE IF EXISTS `category`;
-CREATE TABLE IF NOT EXISTS `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_category_name` (`name`)
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -45,24 +43,45 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 DROP TABLE IF EXISTS `device`;
-CREATE TABLE IF NOT EXISTS `device` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `device` (
+  `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `color` text NOT NULL,
-  `partNumber` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`)
+  `partNumber` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 --
--- Restrições para dumps de tabelas
+-- Índices de tabela `category`
 --
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_category_name` (`name`);
+
+--
+-- Índices de tabela `device`
+--
+ALTER TABLE `device`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- AUTO_INCREMENT de tabela `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `device`
+--
+ALTER TABLE `device`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas `device`
 --
 ALTER TABLE `device`
-  ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+  ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
