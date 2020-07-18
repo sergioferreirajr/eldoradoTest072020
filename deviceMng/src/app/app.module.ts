@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ParametersService } from './services/parameters.service';
+import { AuthorModule } from './author/author.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ParametersService } from './services/parameters.service';
     CategoryModule,
     HomeModule,
     HttpClientModule,
+    AuthorModule,
     AppRoutingModule
   ],
   providers: [DataService, ParametersService],

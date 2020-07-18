@@ -5,6 +5,7 @@ import { CategoryListComponent } from './category/categorylist.component';
 import { HomeComponent } from './home/home.component';
 import { NewdeviceComponent } from './device/newdevice.component';
 import { NewcategoryComponent } from './category/newcategory.component';
+import { AuthorComponent } from './author/author.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path:'categories/newcategory',
     component: NewcategoryComponent
+  },
+  {
+    path:'author',
+    component: AuthorComponent
   }
 ];
 
