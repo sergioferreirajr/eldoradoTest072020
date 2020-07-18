@@ -6,8 +6,8 @@
       <!-- CATEGORY -->
       <label for="power">Category</label>
       <select class="form-control"  id="category" name="category"
-          [(ngModel)]="device.categoryId" #category="ngModel" required>
-        <option *ngFor="let category of getCategories()" [value]="category.id">{{category.name}}</option>
+          [(ngModel)]="device.category_id" #category="ngModel" required>
+        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
       </select>
       <div *ngIf="category.errors && (category.dirty || category.touched)"
             class="alert alert-danger">
