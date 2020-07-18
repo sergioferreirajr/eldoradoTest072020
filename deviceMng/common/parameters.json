@@ -1,0 +1,9 @@
+{
+  "ep_get_all_devices": "http://localhost:3004/devices/",
+  "ep_delete_device": "http://localhost:3004/devices/",
+  "ep_post_device": "http://localhost:3004/devices/newdevice/",
+  "ep_get_all_categories": "http://localhost:3004/categories/",
+  "ep_get_category": "http://localhost:3004/categories/",
+  "ep_post_category": "http://localhost:3004/categories/newcategory/",
+  "ep_delete_category": "http://localhost:3004/categories/"
+}
