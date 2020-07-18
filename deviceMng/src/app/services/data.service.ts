@@ -1,13 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Device } from '../device/device.model';
 import { Category } from '../category/category.model';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { ParametersService } from './parameters.service';
+import { retry, catchError, map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor() {
+  ep_getAllDevices = ParametersService.getEPGetAllDevices();
+  ep_deleteDevice = ParametersService.getEPDeleteDevice();
+  ep_newDevice = ParametersService.getEPNewDevice();
+  ep_getAllCategories = ParametersService.getEPGetAllCategories();
+  ep_getCategory = ParametersService.getEPGetCategory();
+  ep_newCategory = ParametersService.getEPNewCategory();
+  ep_deleteCategory = ParametersService.getEPDeleteCategory();
+
+  // Headers
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
+
+  constructor(private httpClient: HttpClient) {
   }
 
   /**
@@ -15,29 +32,35 @@ export class DataService {
    *
    * @returns Device[]
    */
-  public getDevices(): Device[]  {
-    const devices = localStorage['devices'];
-    return devices ? JSON.parse(devices): [];
+  public getDevices(): Observable<any>  {
+    let result = this.httpClient.get<Device[]>(this.ep_getAllDevices)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+    return result;
   }
 
   /**
    * Add new Device
    * @param device
    */
-  public newDevice(device: Device): void{
-    const devices = this.getDevices();
-    device.id = new Date().getTime();
-    devices.push(device);
-    localStorage['devices'] = JSON.stringify(devices);
+  public newDevice(device: Device): Observable<Device>{
+    return this.httpClient.post<Device>(this.ep_newDevice, JSON.stringify(device), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
 
   /**
    * Delete a device using an ID
    */
-  public deleteDevice(id: number): void {
-    let devices: Device[] = this.getDevices();
-    devices = devices.filter(device => device.id !== id);
-    localStorage['devices'] = JSON.stringify(devices);
+  public deleteDevice(id: number) {
+    return this.httpClient.delete<Device>(this.ep_deleteDevice + id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
 
   /**
@@ -45,53 +68,60 @@ export class DataService {
    *
    * @returns Category[]
    */
-  public getCategories(): Category[]  {
-    const categories = localStorage['categories'];
-    return categories ? JSON.parse(categories): [];
+  public getCategories(): Observable<Category[]>  {
+    let result = this.httpClient.get<Category[]>(this.ep_getAllCategories)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+    return result;
   }
 
   /**
    * Add new Category
    * @param Category
    */
-  public newCategory(category: Category): void{
-    const categories = this.getCategories();
-    category.id = new Date().getTime();
-    categories.push(category);
-    localStorage['categories'] = JSON.stringify(categories);
+  public newCategory(category: Category): Observable<Category>{
+    return this.httpClient.post<Category>(this.ep_newCategory, JSON.stringify(category), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
 
   /**
    * Delete a category using an ID
    */
-  public deleteCategory(id: number): void {
-
-    let devices: Device[] = this.getDevicesByCategoryId(id);
-    for (var device of devices) {
-      this.deleteDevice(device.id);
-    }
-
-    let categories: Category[] = this.getCategories();
-    categories = categories.filter(category => category.id !== id);
-    localStorage['categories'] = JSON.stringify(categories);
+  public deleteCategory(id: number) {
+    return this.httpClient.delete<Category>(this.ep_deleteCategory + id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
 
   /**
    * Search Category by id
    * @param id Number
    */
-  public getCategoryById(id: number): Category {
-    const categories: Category[] = this.getCategories();
-    return categories.find(category => category.id == id);
+  public getCategoryById(id: number): Observable<Category> {
+    return this.httpClient.get<Category>(this.ep_getCategory + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
 
   /**
-   *
-   * @param id Search devices by Category Id
+   * Handle errors
    */
-  private getDevicesByCategoryId(id: number): Device[]{
-    let devices: Device[] = this.getDevices();
-    devices = devices.filter(device => device.categoryId == id);
-    return devices;
-  }
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error code: ${error.status}, ` + `Message: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  };
 }
