@@ -18,9 +18,11 @@ Atividades executadas
 - Criar projeto da API Node
 - Criar endpoints e integrar com o BD (parcial: endpoints de Device com validação)
 
-Atividades pendentes:
+18/07/2020
 - Criar endpoints e integrar com o BD
-- Integrar endpoints no projeto Angular
+- Integrar endpoints na API (NodeJS) no projeto FrontEnd (Angular)
+
+Atividades pendentes:
 - Implementar testes automatizados
 - Criar nova conta na Amazon e instanciar máquinas T2 para front, back e BD
 - Configurar máquinas AWS e instalar sistema
