@@ -19,7 +19,6 @@
     "dotenv": "^8.2.0",
     "env-var": "^6.2.0",
     "express": "^4.17.1",
-    "express-generator": "^4.16.1",
     "express-validator": "^6.6.0",
     "http": "0.0.1-security",
     "mysql": "^2.18.1",
