@@ -89,5 +89,4 @@ $ npm install
 
 $ ng serve
 - Open a web browser and use the link:
-
 http://localhost:4200
