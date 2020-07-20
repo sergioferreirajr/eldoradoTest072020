@@ -33,7 +33,7 @@ export class DeviceListComponent implements OnInit {
   }
 
   getCategoryNameById(id: number): string {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < this.categories.length; i++) {
       let cat = this.categories[i];
       if (cat != undefined){
         if (cat.id == id){
