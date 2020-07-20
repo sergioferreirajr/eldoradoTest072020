@@ -7,8 +7,18 @@ module.exports = function(){
     var app = express();
     app.use(cors());
     
-    app.use(bodyParser.urlencoded({extended: true}));
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({ 
+        limit: "50mb", 
+        type: (req) => req.headers["content-type"].includes("application/json") 
+    }));
+    
+    app.use(
+        bodyParser.urlencoded({
+            extended: true,
+            parameterLimit: 10000,
+            limit: 1024 * 1024 * 10
+        })
+    );
 
     consign()
         .include('controllers')
