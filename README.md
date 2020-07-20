@@ -21,7 +21,9 @@ It's a plus if the project is deployed on a AWS server and if automated tests ar
 $ sudo apt-get install git
 
 - Using a Linux Terminal, go to your WORKDIR and download the challange projet from GitHub Public repository:
+
 (WORKDIR is your favorite working diretory)
+
 $ cd $WORKDIR
 $ git clone https://github.com/sergioferreirajr/eldoradoTest072020.git
 
