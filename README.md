@@ -3,6 +3,9 @@ Name: Sérgio Ferreira Jr.
 Email: sergioferreirajr@gmail.com
 Date: 07/14/2020
 
+######################################################
+## Description
+######################################################
 Challenge for a Senior developer opportunity at Eldorado Institute (Manaus-AM).
 
 The goal is to develop a website to manage devices (create, list and delete). Each device has a category and the categories can also be managed (create, list en delete).
