@@ -19,6 +19,7 @@ It's a plus if the project is deployed on a AWS server and if automated tests ar
 ## Installation and configuration 
 ### Instructions to install at localhost (Ubuntu 18.04)
 
+
 1) To download the application repository
 - Install GIT:
 
@@ -29,6 +30,7 @@ $ sudo apt-get install git
 $ cd $WORKDIR
 
 $ git clone https://github.com/sergioferreirajr/eldoradoTest072020.git
+
 
 
 2) To install and congirure the application database
@@ -62,6 +64,7 @@ Importar tabelas:
 $ /opt/lampp/bin/mysql -u root -p eldoradodb < eldoradodb.sql
 
 
+
 3) To run deviceMngApi app (localhost API/backend)
 - Install NodeJs 12 and NPM 6
 
@@ -80,6 +83,8 @@ $ cd $WORKDIR/eldoradoTest072020/deviceMngApi/
 $ npm install
 
 $ node index.js
+
+
 
 4) To run deviceMng app (localhost Frontend)
 - Install Angular CLI
