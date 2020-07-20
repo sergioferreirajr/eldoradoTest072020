@@ -1,4 +1,4 @@
-# eldoradoTest072020
+# API NodeJs + Fonrtend Angular 8 + Mysql (eldoradoTest072020)
 Name: Sérgio Ferreira Jr.
 Email: sergioferreirajr@gmail.com
 Date: 07/14/2020
