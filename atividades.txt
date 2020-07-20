@@ -22,7 +22,14 @@ Atividades executadas
 - Criar endpoints e integrar com o BD
 - Integrar endpoints na API (NodeJS) no projeto FrontEnd (Angular)
 
+19/07/2020
+- Criar nova conta na Amazon e instanciar máquinas T2 para front, back e BD
+- Configurar máquinas AWS e instalar sistema (parcial)
+
+20/07/2020
+- Configurar máquinas AWS e instalar sistema
+- Organizar documentação
+
+
 Atividades pendentes:
 - Implementar testes automatizados
-- Criar nova conta na Amazon e instanciar máquinas T2 para front, back e BD
-- Configurar máquinas AWS e instalar sistema
