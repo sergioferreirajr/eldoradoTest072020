@@ -17,7 +17,7 @@ The programming language to be used is Angular 8 (frontend) and Node.JS (backend
 It's a plus if the project is deployed on a AWS server and if automated tests are developed.
 
 ## Installation and configuration 
-## Instructions to install at localhost (Ubuntu 18.04)
+### Instructions to install at localhost (Ubuntu 18.04)
 
 1) To download the application repository
 - Install GIT:
