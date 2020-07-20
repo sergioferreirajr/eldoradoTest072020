@@ -1,19 +1,23 @@
 const { check, validationResult } = require('express-validator');
 
 module.exports = function(app){
+
+    const dateStr = new Date().toLocaleString('pt-BR', {
+        timeZone: 'America/Sao_Paulo'
+    });
+
     //GET ALL DEVICES
     app.get('/devices', function(req, res){
 
         var connection = app.persistence.connectionFactory();
         var deviceDao = new app.persistence.DeviceDao(connection);
 
-        console.log('Listing devices...');
         deviceDao.getAll(function(error, result){
             if(error){
-                console.log('ERROR: List devices... ' + error);
+                console.log(dateStr + ' - ERROR: List devices... ' + error);
                 res.status(400).send(error);
             } else {
-                console.log("SUCCESS: Listing devices... ");
+                console.log(dateStr + " - SUCCESS: Listing devices... ");
                 res.status(200).send(result)
             }
         });
@@ -32,27 +36,24 @@ module.exports = function(app){
         var device = req.body;
         var categoryId = req.body.category_id;
         var color = req.body.color;
-        var partNumber = req.body.partNumber;
-        // var device = JSON.parse(req.body);
-        
+        var partNumber = req.body.partNumber;        
         var errors = validationResult(req);
         
         if (!errors.isEmpty()){
-            console.log("ERROR: Validation errors before database persistence.");
+            console.log(dateStr + " - ERROR: Validation errors before database persistence.");
             res.status(400).send(errors);
             return;
         }
         
-        console.log('Creating a new device...');
         var connection = app.persistence.connectionFactory();
         var deviceDao = new app.persistence.DeviceDao(connection);
 
         deviceDao.newDevice(device, categoryId, color, partNumber, function(error, result){
             if(error){
-                console.log('ERROR: New Device creation error: ' + error);
+                console.log(dateStr + ' - ERROR: New Device creation error: ' + error);
                 res.status(400).send(error);
             } else {
-                console.log("SUCCESS: New Device criated at database with ID: " + result.insertId);
+                console.log(dateStr + " - SUCCESS: New Device criated at database with ID: " + result.insertId);
                 res.status(201).json(device)
             }
         });
@@ -69,10 +70,10 @@ module.exports = function(app){
 
         deviceDao.delete(devideId, function(error){
             if(error){
-                console.log('ERROR: Device ID: ' + devideId + " was not deleted. " + error);
+                console.log(dateStr + ' - ERROR: Device ID: ' + devideId + " was not deleted. " + error);
                 res.status(400).send(error);
             } else {
-                console.log("SUCCESS: Device deleted from database: " + devideId);
+                console.log(dateStr + " - SUCCESS: Device deleted from database: " + devideId);
                 res.status(200).json(devideId)
             }
         });

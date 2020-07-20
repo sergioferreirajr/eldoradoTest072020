@@ -1,18 +1,22 @@
 const { check, validationResult } = require('express-validator');
 
 module.exports = function(app){
+    const dateStr = new Date().toLocaleString('pt-BR', {
+        timeZone: 'America/Sao_Paulo'
+    });
+
     //GET ALL CATEGOTIES
     app.get('/categories', function(req, res){
         var connection = app.persistence.connectionFactory();
         var categoryDao = new app.persistence.CategoryDao(connection);
 
-        console.log('Listing categories...');
+        // console.log('Listing categories...');
         categoryDao.getAll(function(error, result){
             if(error){
-                console.log('ERROR: List categories... ' + error);
+                console.log(dateStr + ' - ERROR: List categories... ' + error);
                 res.status(400).send(error);
             } else {
-                console.log("SUCCESS: Listing categories... ");
+                console.log(dateStr + " - SUCCESS: Listing categories... ");
                 res.status(200).send(result)
             }
         });
@@ -28,11 +32,11 @@ module.exports = function(app){
     function(req, res){
         var category = req.body;
         let categoryName = category.name;
-        
+                
         var errors = validationResult(req);
         
         if (!errors.isEmpty()){
-            console.log("ERROR: Validation errors before database persistence.");
+            console.log(dateStr + " - ERROR: Validation errors before database persistence.");
             res.status(400).send(errors);
             return;
         }
@@ -43,10 +47,10 @@ module.exports = function(app){
 
         categoryDao.newCategory(category, categoryName, function(error, result){
             if(error){
-                console.log('ERROR: New Category creation error: ' + error);
+                console.log(dateStr + ' - ERROR: New Category creation error: ' + error);
                 res.status(400).send(error);
             } else {
-                console.log("SUCCESS: New Category criated at database");
+                console.log(dateStr + " - SUCCESS: New Category criated at database with ID: " + result.insertId);
                 res.status(201).json(category)
             }
         });
@@ -62,10 +66,10 @@ module.exports = function(app){
 
         categoryDao.findById(categoryId, function(error, result){
             if(error){
-                console.log('ERROR: It was not possible do find Category (ID: ' + categoryId + ") " + error);
+                console.log(dateStr + ' - ERROR: It was not possible do find Category (ID: ' + categoryId + ") " + error);
                 res.status(400).send(error);
             } else {
-                console.log("SUCCESS: Category found: " + categoryId);
+                console.log(dateStr + " - SUCCESS: Category found: " + categoryId);
                 res.status(200).json(result)
             }
         });
@@ -81,10 +85,10 @@ module.exports = function(app){
 
         categoryDao.delete(categoryId, function(error){
             if(error){
-                console.log('ERROR: Category ID: ' + categoryId + " was not deleted. " + error);
+                console.log(dateStr + ' - ERROR: Category ID: ' + categoryId + " was not deleted. " + error);
                 res.status(400).send(error);
             } else {
-                console.log("SUCCESS: Category deleted from database: " + categoryId);
+                console.log(dateStr + " - SUCCESS: Category deleted from database: " + categoryId);
                 res.status(200).json(categoryId)
             }
         });
