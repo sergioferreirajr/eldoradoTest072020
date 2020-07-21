@@ -22,8 +22,12 @@ export class NewcategoryComponent implements OnInit {
 
   newCategory(): void {
     if(this.formCategory.form.valid){
-      this.dataService.newCategory(this.category).subscribe(() => {
+      this.dataService.newCategory(this.category).subscribe(
+        () => {
         this.router.navigate(["/categories"]);
+      },
+      err =>{
+        alert('ERROR. Error while creating a new category: Category = "' + this.category.name + ': - ' + err)
       });
     }
   }

@@ -27,6 +27,9 @@ export class NewdeviceComponent implements OnInit {
     if(this.formDevice.form.valid){
       this.dataService.newDevice(this.device).subscribe(() => {
         this.router.navigate(["/devices"]);
+      },
+      err =>{
+        alert('ERROR. Error while creating a new Device: Device Color = "' + this.device.color + ': - ' + err)
       });
     }
   }
