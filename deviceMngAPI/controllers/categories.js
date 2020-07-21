@@ -1,9 +1,6 @@
 const { check, validationResult } = require('express-validator');
 
 module.exports = function(app){
-    const dateStr = new Date().toLocaleString('pt-BR', {
-        timeZone: 'America/Sao_Paulo'
-    });
     const cat_get_all = '/categories';
     const cat_post_new = '/categories/newcategory';
     const cat_get_one = '/categories/:id';
@@ -13,6 +10,10 @@ module.exports = function(app){
     app.get(cat_get_all, function(req, res){
         var connection = app.persistence.connectionFactory();
         var categoryDao = new app.persistence.CategoryDao(connection);
+
+        const dateStr = new Date().toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo'
+        });
 
         // console.log('Listing categories...');
         categoryDao.getAll(function(error, result){
@@ -38,6 +39,9 @@ module.exports = function(app){
         let categoryName = category.name;
                 
         var errors = validationResult(req);
+        const dateStr = new Date().toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo'
+        });
         
         if (!errors.isEmpty()){
             console.log(dateStr + ' - (POST:'+cat_post_new+') ERROR: Validation errors before database persistence.');
@@ -53,7 +57,7 @@ module.exports = function(app){
                 console.log(dateStr + ' - (POST:'+cat_post_new+') ERROR: New Category creation error: ' + error);
                 res.status(400).send(error);
             } else {
-                console.log(dateStr + ' - (POST:'+cat_post_new+') SUCCESS: New Category criated at database with ID: ' + result.insertId);
+                console.log(dateStr + ' - (POST:'+cat_post_new+') SUCCESS: New Category created at database with ID: ' + result.insertId);
                 res.status(201).json(category)
             }
         });
@@ -66,6 +70,9 @@ module.exports = function(app){
 
         var connection = app.persistence.connectionFactory();
         var categoryDao = new app.persistence.CategoryDao(connection);
+        const dateStr = new Date().toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo'
+        });
 
         categoryDao.findById(categoryId, function(error, result){
             if(error){
@@ -85,6 +92,9 @@ module.exports = function(app){
 
         var connection = app.persistence.connectionFactory();
         var categoryDao = new app.persistence.CategoryDao(connection);
+        const dateStr = new Date().toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo'
+        });
 
         categoryDao.delete(categoryId, function(error){
             if(error){

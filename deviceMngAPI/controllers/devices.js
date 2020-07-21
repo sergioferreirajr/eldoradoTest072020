@@ -1,10 +1,6 @@
 const { check, validationResult } = require('express-validator');
 
-module.exports = function(app){
-
-    const dateStr = new Date().toLocaleString('pt-BR', {
-        timeZone: 'America/Sao_Paulo'
-    });
+module.exports = function(app){   
     const dev_get_all = '/devices';
     const dev_post_new = '/devices/newdevice';
     const dev_delete_one = '/devices/:id';
@@ -14,6 +10,10 @@ module.exports = function(app){
 
         var connection = app.persistence.connectionFactory();
         var deviceDao = new app.persistence.DeviceDao(connection);
+
+        var dateStr = new Date().toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo'
+        });
 
         deviceDao.getAll(function(error, result){
             if(error){
@@ -41,6 +41,10 @@ module.exports = function(app){
         var color = req.body.color;
         var partNumber = req.body.partNumber;        
         var errors = validationResult(req);
+
+        var dateStr = new Date().toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo'
+        });
         
         if (!errors.isEmpty()){
             console.log(dateStr + ' - (POST:'+dev_post_new+') ERROR: Validation errors before database persistence.');
@@ -70,6 +74,9 @@ module.exports = function(app){
 
         var connection = app.persistence.connectionFactory();
         var deviceDao = new app.persistence.DeviceDao(connection);
+        var dateStr = new Date().toLocaleString('pt-BR', {
+            timeZone: 'America/Sao_Paulo'
+        });
 
         deviceDao.delete(devideId, function(error){
             if(error){
